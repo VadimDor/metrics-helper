@@ -41,7 +41,7 @@ jobs:
           RESTAPI_TOKEN: ${{ secrets.token }}
         # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-output-parameter
         run: |
-          echo "Listing tokens ${{ secrets.GITHUB_TOKEN }}"
+          echo "Listing tokens ${{ secrets.RESTAPI_TOKEN }}"
           curl -L \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ env.RESTAPI_TOKEN }}" \
@@ -50,7 +50,7 @@ jobs:
 
           curl -L \
             -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.METRICS_TOKEN }}" \
+            -H "Authorization: Bearer ${{ secrets.token }}" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
               https://api.github.com/repos/VadimDor/metrics-helper-caller/actions/secrets/METRICS_TOKEN              
         
