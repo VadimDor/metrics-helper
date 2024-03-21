@@ -7,6 +7,12 @@ on:
         default: 'yes'
         required: false
         type: string
+          # https://github.com/lowlighter/metrics/blob/master/source/plugins/achievements/README.md
+      plugin_achievements:  
+        description: 'A plugin_achievements passed from the caller workflow'
+        default: 'no'
+        required: false
+        type: string       
     secrets:
       token:
         required: true
@@ -42,4 +48,10 @@ jobs:
           template: classic
           config_timezone: Europe/Paris
           base: header, activity, community, repositories, metadata
+          
           plugin_introduction: ${{ inputs.plugin_introduction }}
+          
+          # https://github.com/lowlighter/metrics/blob/master/source/plugins/achievements/README.md
+          plugin_achievements:  ${{ inputs.plugin_achievements }}
+          plugin_achievements_threshold: C
+          plugin_achievements_display: compact
