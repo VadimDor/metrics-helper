@@ -1,5 +1,16 @@
 name: GitHub Metrics Helper
 on:
+  workflow_call:
+    inputs:
+      plugin_introduction:
+        description: 'A plugin_introduction passed from the caller workflow'
+        default: 'yes'
+        required: false
+        type: string
+    secrets:
+      token:
+        required: true
+
   # Schedule at 00:00 on every 3rd day-of-month, https://crontab.guru/#0_0_*/3_*_*
   #schedule: [{ cron: "0 0 */3 * *" }]
   # (optional) Run workflow manually
@@ -22,7 +33,7 @@ jobs:
       - uses: lowlighter/metrics@latest
         with:
           filename: github-metrics-myintro5.svg
-          token: ${{ secrets.METRICS_TOKEN }}
+          token: ${{ secrets.token }}
           user: vadimdor
           # https://github.com/lowlighter/metrics/blob/master/source/plugins/core/README.md#using-gists
           output_action: gist
@@ -31,4 +42,4 @@ jobs:
           template: classic
           config_timezone: Europe/Paris
           base: header, activity, community, repositories, metadata
-          plugin_introduction: yes
+          plugin_introduction: ${{ inputs.plugin_introduction }}
