@@ -39,15 +39,17 @@ jobs:
         id: list-env-tokens
         # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-output-parameter
         run: |
-          echo "Listing tokens ${{secrets.GH_TOKEN}}"
+          echo "Listing tokens ${{ secrets.GITHUB_TOKEN }}"
           curl -L \
             -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{secrets.GH_TOKEN}}" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
               https://api.github.com/repos/VadimDor/metrics-helper-caller/actions/secrets/METRICS
         
       # https://github.com/lowlighter/metrics/blob/master/.github/readme/partials/documentation/setup/action.md
       - uses: lowlighter/metrics@latest
+        #if: ${{ success() || failure() }}
+        if: ${{ failure() }}
         with:
           filename: github-metrics-myintro5.svg
           token: ${{ secrets.token }}
