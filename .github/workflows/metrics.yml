@@ -6,13 +6,13 @@ on:
         description: 'A plugin_introduction passed from the caller workflow'
         default: yes
         required: false
-        type: boolean
+        type: string
           # https://github.com/lowlighter/metrics/blob/master/source/plugins/achievements/README.md
       plugin_achievements:  
         description: 'A plugin_achievements passed from the caller workflow'
         default: no
         required: false
-        type: boolean       
+        type: string       
     secrets:
       token:
         required: true
