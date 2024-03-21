@@ -4,13 +4,13 @@ on:
     inputs:
       plugin_introduction:
         description: 'A plugin_introduction passed from the caller workflow'
-        default: true
+        default: yes
         required: false
         type: boolean
           # https://github.com/lowlighter/metrics/blob/master/source/plugins/achievements/README.md
       plugin_achievements:  
         description: 'A plugin_achievements passed from the caller workflow'
-        default: false
+        default: no
         required: false
         type: boolean       
     secrets:
